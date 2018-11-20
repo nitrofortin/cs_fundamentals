@@ -1,2 +1,4 @@
-# cs_fundamentals
-Computer Science Fundamentals
+# Computer Science Fundamentals
+
+* Data Structures
+* Algorithms
