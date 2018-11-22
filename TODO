@@ -1,8 +1,23 @@
-TODO
+TODOs
 
-build stringbuilder
-lookup Rabin-Karp Substring Search
+SinglyLinkedList
+Stringbuilder
+Hash Table Collision Resolution
+Rabin-Karp Substring Search
+Topological Sort
+Dijkstra's Algorithm
+AVL Trees
+RedBlackTrees
 
-implement:
-is_unique
-check_permutation
+Stack
+Queue
+
+Binary Tree Traversal: In-Order Traversal, Pre-Order Traversal, Post-Order Traversal
+
+Negative Bit
+Get Bit
+Set Bit
+Clear Bit
+Update Bit
+
+
