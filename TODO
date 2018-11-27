@@ -4,7 +4,7 @@ SinglyLinkedList
 Stringbuilder
 Hash Table Collision Resolution
 Rabin-Karp Substring Search
-Topological Sort
+
 Dijkstra's Algorithm
 AVL Trees
 RedBlackTrees
@@ -21,3 +21,11 @@ Clear Bit
 Update Bit
 
 
+Bubble sort
+Selection sort
+Merge sort 
+Quick sort
+Topological Sort
+Radix sort
+
+Binary search
