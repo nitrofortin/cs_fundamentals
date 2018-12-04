@@ -13,11 +13,12 @@
 - [ ] BinarySearchTree
 - [ ] MinHeap
 - [ ] MaxHeap
-- [ ] (Balanced) AVL Trees
-- [ ] (Balanced) RedBlack Trees
-- [ ] (Balanced) Splay Trees
+- [ ] (Balanced) AVLTree
+- [ ] (Balanced) RedBlackTree
+- [ ] (Balanced) SplayTree
 - [ ] Stack
 - [ ] Queue
+- [ ] Dequeue
 - [ ] Graph
 - [ ] Graph as adjacency matrix
 - [ ] Graph as adjacency list
@@ -29,19 +30,22 @@
 - [x] Post-Order Traversal
 - [ ] Bubble sort
 - [ ] Selection sort
+- [ ] Insertion sort
 - [ ] Merge sort 
 - [ ] Quick sort
-- [ ] Topological Sort
+- [ ] Shell sort
 - [ ] Radix sort
 - [ ] Stringbuilder
 - [ ] Hash Table Collision Resolution-
 - [ ] Rabin-Karp Substring Search
+- [ ] Sequential Search
 - [ ] Binary Search
 - [ ] Plus Search
 - [ ] Dijkstra's Algorithm
+- [ ] Prim's Algorithm
 - [ ] Depth-First Search
 - [ ] Breath-First Search
- 
+- [ ] Topological Sort
 
 * BINARY MANIPULATION 
 - [ ] Negative Bit
