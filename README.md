@@ -5,19 +5,19 @@
 - [x] SinglyLinkedList
 - [ ] DoublyLinkedList
 - [ ] Hashtable
-- [x] BinaryTree
-- [x] CompleteBinaryTree
-- [ ] FullBinaryTree
-- [ ] PerfectBinaryTree
+- [x] BinaryTree template
+- [x] CompleteBinaryTree template
+- [ ] FullBinaryTree template
+- [ ] PerfectBinaryTree template
 - [x] BinarySearchTree
 - [x] MinHeap
 - [x] MaxHeap
-- [ ] (Balanced) AVLTree
-- [ ] (Balanced) RedBlackTree
-- [ ] (Balanced) SplayTree
+- [ ] AVLTree
+- [ ] RedBlackTree
+- [ ] SplayTree
 - [x] Stack
 - [x] Queue
-- [ ] Dequeue
+- [x] Dequeue
 - [ ] Graph
 - [ ] Graph as adjacency matrix
 - [ ] Graph as adjacency list

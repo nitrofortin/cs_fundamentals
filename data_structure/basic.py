@@ -62,3 +62,39 @@ class Queue(object):
 
     def empty(self):
         return bool(self._queue)
+
+class Dequeue(object):
+    def __init__(self):
+        self._dequeue = []
+
+    def enqueue_bottom(self, value):
+        self._dequeue.append(value)
+
+    def enqueue_top(self, value):
+        self._dequeue = [value] + self._dequeue.
+
+    def dequeue_top(self):
+        if len(self._dequeue)>0:
+            return self._dequeue.pop()
+        return None
+
+    def dequeue_top(self):
+        if len(self._dequeue)>0:
+            return self._dequeue.pop(0)
+        return None
+
+    def peek_bottom(self):
+        if len(self._dequeue)>0:
+            return self._dequeue[-1]
+        return None
+
+    def peek_top(self):
+        if len(self._dequeue)>0:
+            return self._dequeue[0]
+        return None
+
+    def size(self):
+        return len(self._dequeue)
+
+    def empty(self):
+        return bool(self._dequeue)
