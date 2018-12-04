@@ -29,6 +29,26 @@ class BinarySearchTree(BinaryTree):
     def __init__(self, root_node):
         super().__init__(root_node)
 
+    def insert(self, value):
+        print("Inserting node with value {}".format(value))
+        node = BinaryTreeNode(value)
+        def _insert(node, node_tree):
+            if node.value < node_tree.value:
+                if node_tree.left_child:
+                    _insert(node, node_tree.left_child)
+                else:
+                    node_tree.left_child = node
+            else:
+                if node_tree.right_child:
+                    _insert(node, node_tree.right_child)
+                else:
+                    node_tree.right_child = node
+            return node_tree
+        if self.root_node:
+            _insert(node, self.root_node)
+        else:
+            self.root_node = node
+
 
 class BinaryHeap(CompleteBinaryTree):
     pass
@@ -38,3 +58,5 @@ class MinHeap(BinaryHeap):
 
 class MaxHeap(BinaryHeap):
     pass
+
+

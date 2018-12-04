@@ -1,4 +1,4 @@
-from data_structure.array import Array
+from data_structure.basic import Array
 
 def get_bucket(bucket_type):
     if bucket_type == "linked_list":

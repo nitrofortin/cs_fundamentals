@@ -1,6 +1,6 @@
 import unittest
 
-from data_structure.tree import BinaryTreeNode, BinaryTree
+from data_structure.tree import BinaryTreeNode, BinaryTree, BinarySearchTree
 from algorithm.tree import (in_order_traversal, 
                               pre_order_traversal,
                               post_order_traversal,
@@ -16,6 +16,11 @@ def get_mock_binary_tree():
     n6 = BinaryTreeNode(6, n3, n4)
     n7 = BinaryTreeNode(7, n5, n6)
     return BinaryTree(n7)
+
+def get_mock_binary_search_tree():
+    n1 = BinaryTreeNode(7, None, None)
+    return BinarySearchTree(n1)
+
 
 class TestBinaryTree(unittest.TestCase):
     def test_in_order_traversal(self):
@@ -46,4 +51,16 @@ class TestBinaryTree(unittest.TestCase):
         print("Testing is_complete...")
         tree = get_mock_binary_tree()
         assert(is_complete(tree.root_node))  
+        print()
+
+    def test_binary_search_tree_insert(self):
+        print("Testing binary_search_tree_insert...")
+        binary_search_tree = get_mock_binary_search_tree()
+        binary_search_tree.insert(1)
+        binary_search_tree.insert(15)
+        binary_search_tree.insert(3)
+        binary_search_tree.insert(4)
+        binary_search_tree.insert(3)
+        binary_search_tree.insert(10)
+        in_order_traversal(binary_search_tree.root_node)
         print()
