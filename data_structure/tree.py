@@ -1,3 +1,7 @@
+class TreeException(Exception):
+    pass
+
+# Utilities
 def _node_count(node):
     if not node:
         return 0
@@ -22,6 +26,7 @@ def _swap_array_elements(array, idx_1, idx_2):
     return array
 
 
+# Nodes
 class TreeNode:
     def __init__(self, value, **children):
         self.value = value
@@ -33,6 +38,8 @@ class BinaryTreeNode(TreeNode):
         self.left_child = left_child
         self.right_child = right_child
 
+
+# Tree templates
 class Tree:
     _max_children = None
     def __init__(self, root_node=None):
@@ -44,7 +51,8 @@ class BinaryTree(Tree):
         super().__init__(root_node)
 
 
-class CompleteBinaryTree(Tree):
+# Basic trees
+class CompleteBinaryTree(BinaryTree):
     def __init__(self, root_node):
         super().__init__(root_node)
     def is_complete(self):
@@ -75,7 +83,28 @@ class BinarySearchTree(BinaryTree):
         else:
             self.root_node = node
 
+    def get(self, value):
+        def _get(value, node):
+            if not node:
+                return None
+            elif node.value == value:
+                return node
+            elif value < node.value:
+                return _get(value, node.left_child)
+            return _get(value, node.right_child)
 
+        if self.root_node:
+            return _get(value, self.root_node)
+        return None
+
+    def __getitem__(self, value):
+        return self.get(value)
+
+    def __contains__(self, value):
+        return bool(self.get(value))
+
+
+# Binary heaps
 class _BinaryHeap(CompleteBinaryTree):
     def __init__(self, root_node=None):
         super().__init__(root_node)
@@ -96,14 +125,18 @@ class _BinaryHeap(CompleteBinaryTree):
         old = self._array_repr[1]
         self._array_repr[1] = self._array_repr.pop()
         self._array_repr_size -= 1
-        self._percolate_down_first_node()       
+        self._percolate_down_node(idx=1)       
         return old
 
     def _percolate_up_last_node(self):
         pass
 
-    def _percolate_down_last_node(self):
+    def _percolate_down_node(self):
         pass
+
+    def build_heap(self):
+        raise TreeException('Heap property not defined, use either `MinHeap` \
+            or `MaxHeap`')
 
 class MinHeap(_BinaryHeap):
 
@@ -126,8 +159,7 @@ class MinHeap(_BinaryHeap):
                                                         idx)
             idx //= 2
 
-    def _percolate_down_first_node(self):
-        idx = 1
+    def _percolate_down_node(self, idx):
         while idx < self._array_repr_size:
             min_child_idx = self._get_min_child(idx)
             if self._array_repr[min_child_idx] < self._array_repr[idx]:
@@ -162,8 +194,7 @@ class MaxHeap(_BinaryHeap):
                                                         idx)
             idx //= 2
 
-    def _percolate_down_first_node(self):
-        idx = 1
+    def _percolate_down_node(self, idx):
         while idx < self._array_repr_size:
             max_child_idx = self._get_max_child(idx)
             if self._array_repr[max_child_idx] > self._array_repr[idx]:
@@ -177,6 +208,7 @@ class MaxHeap(_BinaryHeap):
 
 
 
+# Self-balanced trees
 class AVLTree(BinaryTree):
     pass
 
