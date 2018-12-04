@@ -9,9 +9,9 @@ from data_structure.tree import (BinaryTreeNode,
                                  _is_complete)
 from algorithm.tree import (in_order_traversal, 
                               pre_order_traversal,
-                              post_order_traversal)
-                              # node_count,
-                              # is_complete)
+                              post_order_traversal,
+                              right_rotation,
+                              left_rotation)
 
 def get_mock_binary_tree():
     n1 = BinaryTreeNode(1, None, None)
@@ -45,6 +45,33 @@ def get_mock_heap(heap_type):
 
 
 class TestBinaryTree(unittest.TestCase):
+    def test_node_count(self):
+        print("Testing node_count...")
+        tree = get_mock_binary_tree()
+        assert(_node_count(tree.root_node)==7)  
+        print()
+
+    def test_is_complete(self):
+        print("Testing is_complete...")
+        tree = get_mock_binary_tree()
+        assert(_is_complete(tree.root_node))  
+        print()
+
+    def test_binary_search_tree_insert(self):
+        print("Testing binary_search_tree_insert...")
+        bst = get_mock_binary_search_tree()
+        bst.insert(1)
+        bst.insert(15)
+        bst.insert(3)
+        bst.insert(4)
+        bst.insert(3)
+        bst.insert(10)
+        in_order_traversal(bst.root_node)
+        print()
+
+
+
+class TestTreeAlgorithm(unittest.TestCase):
     def test_in_order_traversal(self):
         print("Testing in_order_traversal...")
         tree = get_mock_binary_tree()
@@ -63,29 +90,24 @@ class TestBinaryTree(unittest.TestCase):
         post_order_traversal(tree.root_node)
         print()
 
-    def test_node_count(self):
-        print("Testing node_count...")
-        tree = get_mock_binary_tree()
-        assert(_node_count(tree.root_node)==7)  
+    def test_right_rotation(self):
+        print("Testing tree right rotation...")
+        bst = get_mock_binary_tree()
+        pre_order_traversal(bst.root_node)
+        print()
+        bst.root_node = right_rotation(bst.root_node)
+        pre_order_traversal(bst.root_node)
         print()
 
-    def test_is_complete(self):
-        print("Testing is_complete...")
-        tree = get_mock_binary_tree()
-        assert(_is_complete(tree.root_node))  
+    def test_left_rotation(self):
+        print("Testing tree left rotation...")
+        bst = get_mock_binary_tree()
+        pre_order_traversal(bst.root_node)
+        print()
+        bst.root_node = left_rotation(bst.root_node)
+        pre_order_traversal(bst.root_node)
         print()
 
-    def test_binary_search_tree_insert(self):
-        print("Testing binary_search_tree_insert...")
-        binary_search_tree = get_mock_binary_search_tree()
-        binary_search_tree.insert(1)
-        binary_search_tree.insert(15)
-        binary_search_tree.insert(3)
-        binary_search_tree.insert(4)
-        binary_search_tree.insert(3)
-        binary_search_tree.insert(10)
-        in_order_traversal(binary_search_tree.root_node)
-        print()
 
 
 class TestBinaryHeap(unittest.TestCase):
