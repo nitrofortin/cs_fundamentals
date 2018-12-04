@@ -1,31 +1,48 @@
 TODOs
 
-SinglyLinkedList
-Stringbuilder
-Hash Table Collision Resolution
-Rabin-Karp Substring Search
+DATA STRUCTURES
+[x] SinglyLinkedList
+[ ] Hashtable
+[ ] BinaryTree
+[ ] CompleteBinaryTree
+[ ] FullBinaryTree
+[ ] PerfectBinaryTree
+[ ] BinarySearchTree
+[ ] MinHeap
+[ ] MaxHeap
+[ ] AVL Trees
+[ ] RedBlackTrees
+[ ] Stack
+[ ] Queue
 
-Dijkstra's Algorithm
-AVL Trees
-RedBlackTrees
+ALGORITHMS
 
-Stack
-Queue
+[x] In-Order Traversal
+[x] Pre-Order Traversal
+[x] Post-Order Traversal
 
-Binary Tree Traversal: In-Order Traversal, Pre-Order Traversal, Post-Order Traversal
+[ ] Bubble sort
+[ ] Selection sort
+[ ] Merge sort 
+[ ] Quick sort
+[ ] Topological Sort
+[ ] Radix sort
 
-Negative Bit
-Get Bit
-Set Bit
-Clear Bit
-Update Bit
+[ ] Stringbuilder
+[ ] Hash Table Collision Resolution
+
+[ ] Rabin-Karp Substring Search
+[ ] Binary search
+
+[ ] Dijkstra's Algorithm
 
 
-Bubble sort
-Selection sort
-Merge sort 
-Quick sort
-Topological Sort
-Radix sort
+BINARY
 
-Binary search
+[ ] Negative Bit
+[ ] Get Bit
+[ ] Set Bit
+[ ] Clear Bit
+[ ] Update Bit
+
+
