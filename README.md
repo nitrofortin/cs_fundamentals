@@ -18,29 +18,23 @@
 
 
 * ALGORITHMS
-
 - [x] In-Order Traversal
 - [x] Pre-Order Traversal
 - [x] Post-Order Traversal- 
-
 - [ ] Bubble sort
 - [ ] Selection sort
 - [ ] Merge sort 
 - [ ] Quick sort
 - [ ] Topological Sort
 - [ ] Radix sort- 
-
 - [ ] Stringbuilder
 - [ ] Hash Table Collision Resolution- 
-
 - [ ] Rabin-Karp Substring Search
 - [ ] Binary search- 
-
 - [ ] Dijkstra's Algorithm- 
 
 
 * BINARY MANIPULATION 
-
 - [ ] Negative Bit
 - [ ] Get Bit
 - [ ] Set Bit
