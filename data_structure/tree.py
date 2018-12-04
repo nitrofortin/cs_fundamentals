@@ -96,7 +96,7 @@ class _BinaryHeap(CompleteBinaryTree):
         old = self._array_repr[1]
         self._array_repr[1] = self._array_repr.pop()
         self._array_repr_size -= 1
-        self._percolate_down_last_node()       
+        self._percolate_down_first_node()       
         return old
 
     def _percolate_up_last_node(self):
@@ -168,7 +168,7 @@ class MaxHeap(_BinaryHeap):
             max_child_idx = self._get_max_child(idx)
             if self._array_repr[max_child_idx] > self._array_repr[idx]:
                 self._array_repr = _swap_array_elements(self._array_repr, 
-                                                        min_child_idx, 
+                                                        max_child_idx, 
                                                         idx)
             idx = max_child_idx
 
