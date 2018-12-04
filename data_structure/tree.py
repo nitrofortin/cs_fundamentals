@@ -89,10 +89,10 @@ class _BinaryHeap(CompleteBinaryTree):
         # Ensure heap property
         self._percolate_up_last_node()
 
-    def get_extremum(self):
+    def _get_extremum(self):
         return self._array_repr[1]
 
-    def delete_extremum(self):
+    def _delete_extremum(self):
         old = self._array_repr[1]
         self._array_repr[1] = self._array_repr.pop()
         self._array_repr_size -= 1
@@ -117,7 +117,7 @@ class MinHeap(_BinaryHeap):
                 return 2*idx
 
     def _percolate_up_last_node(self):
-        idx = self._array_repr_sizer
+        idx = self._array_repr_size
         while idx > 1:
             parent_idx = idx//2
             if self._array_repr[parent_idx] > self._array_repr[idx]:
@@ -137,8 +137,8 @@ class MinHeap(_BinaryHeap):
             idx = min_child_idx
 
 
-    get_min = _BinaryHeap.get_extremum
-    delete_min = _BinaryHeap.delete_extremum
+    get_min = _BinaryHeap._get_extremum
+    delete_min = _BinaryHeap._delete_extremum
 
 
 
@@ -153,7 +153,7 @@ class MaxHeap(_BinaryHeap):
                 return 2*idx
 
     def _percolate_up_last_node(self):
-        idx = self._array_repr_sizer
+        idx = self._array_repr_size
         while idx > 1:
             parent_idx = idx//2
             if self._array_repr[parent_idx] < self._array_repr[idx]:
@@ -172,8 +172,8 @@ class MaxHeap(_BinaryHeap):
                                                         idx)
             idx = max_child_idx
 
-    get_max = _BinaryHeap.get_extremum
-    delete_max = _BinaryHeap.delete_extremum
+    get_max = _BinaryHeap._get_extremum
+    delete_max = _BinaryHeap._delete_extremum
 
 
 
@@ -187,3 +187,4 @@ class RedBlackTree(BinaryTree):
 
 class SplayTree(BinaryTree):
     pass
+
