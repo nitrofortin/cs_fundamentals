@@ -5,19 +5,18 @@
 - [x] SinglyLinkedList
 - [ ] DoublyLinkedList
 - [ ] Hashtable
-- [ ] BinaryTree
-- [ ] BinaryTree
-- [ ] CompleteBinaryTree
+- [x] BinaryTree
+- [x] CompleteBinaryTree
 - [ ] FullBinaryTree
 - [ ] PerfectBinaryTree
-- [ ] BinarySearchTree
-- [ ] MinHeap
-- [ ] MaxHeap
+- [x] BinarySearchTree
+- [x] MinHeap
+- [x] MaxHeap
 - [ ] (Balanced) AVLTree
 - [ ] (Balanced) RedBlackTree
 - [ ] (Balanced) SplayTree
-- [ ] Stack
-- [ ] Queue
+- [x] Stack
+- [x] Queue
 - [ ] Dequeue
 - [ ] Graph
 - [ ] Graph as adjacency matrix
@@ -28,6 +27,7 @@
 - [x] In-Order Traversal
 - [x] Pre-Order Traversal
 - [x] Post-Order Traversal
+- [x] Tree rotations
 - [ ] Bubble sort
 - [ ] Selection sort
 - [ ] Insertion sort
