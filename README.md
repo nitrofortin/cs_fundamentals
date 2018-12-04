@@ -36,7 +36,7 @@
 - [ ] Shell sort
 - [ ] Radix sort
 - [ ] Stringbuilder
-- [ ] Hash Table Collision Resolution-
+- [ ] Hash Table Collision Resolution
 - [ ] Rabin-Karp Substring Search
 - [ ] Sequential Search
 - [ ] Binary Search
