@@ -11,6 +11,17 @@ def pre_order_traversal(node):
         pre_order_traversal(node.left_child)
         pre_order_traversal(node.right_child)
 
+def pre_order_traversal_debug(node, debug):
+    if debug == 20:
+        raise
+    if node:
+        debug +=1 
+        print('Visiting node {}'.format(node))
+        print('Visiting node with value {}'.format(node.value))
+        pre_order_traversal_debug(node.left_child, debug)
+        pre_order_traversal_debug(node.right_child, debug)
+
+
 
 def post_order_traversal(node):
     if node:
