@@ -144,14 +144,17 @@ class _BinaryHeap(CompleteBinaryTree):
         return old
 
     def _percolate_up_last_node(self):
-        pass
-
-    def _percolate_down_node(self):
-        pass
-
-    def build_heap(self):
         raise TreeException('Heap property not defined, use either `MinHeap` \
             or `MaxHeap`')
+
+    def _percolate_down_node(self):
+        raise TreeException('Heap property not defined, use either `MinHeap` \
+            or `MaxHeap`')
+
+    def heapify(self, array):
+        for value in array:
+            self.insert(value)
+
 
 class MinHeap(_BinaryHeap):
 
