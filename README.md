@@ -39,8 +39,8 @@
 - [ ] Stringbuilder
 - [ ] Hash Table Collision Resolution
 - [ ] Rabin-Karp Substring Search
-- [ ] Sequential Search
-- [ ] Binary Search
+- [x] Sequential Search
+- [x] Binary Search
 - [ ] Plus Search
 - [ ] Dijkstra's Algorithm
 - [ ] Prim's Algorithm
