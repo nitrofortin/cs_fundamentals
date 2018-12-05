@@ -264,29 +264,20 @@ class AVLTree(BinaryTree):
 
         def _insert(value, node):
             self.ite = 1
-            if value <= node.value:
+            if value < node.value:
                 if node.left_child:
                     _insert(value, node.left_child)
                 else:
                     node.left_child = AVLTreeNode(value, parent=node)
                     self._recalculate_balance(node.left_child)
+
             else:
                 if node.right_child:
-                    try:
-                        print('right child', node.right_child.value)
-                        print('node', node.value)
-                        print(value)
-                        self.ite += 1
-                        if self.ite == 10:
-                            raise Exception('ite raise')
-                        _insert(value, node.right_child)
-
-                    except:
-                        raise Exception('rec')
+                    _insert(value, node.right_child)
                 else:
                     node.right_child = AVLTreeNode(value, parent=node)
                     self._recalculate_balance(node.right_child)
-            return node
+
         if self.root_node:
             _insert(value, self.root_node)
         else:
@@ -296,6 +287,7 @@ class AVLTree(BinaryTree):
     def _recalculate_balance(self, node):
         if abs(node.balance_factor) > 1:
             self._rebalance_tree(node)
+
         elif node.parent:
             if node._is_left_child(): 
                 node.parent.balance_factor += 1
@@ -303,56 +295,58 @@ class AVLTree(BinaryTree):
                 node.parent.balance_factor -= 1
             if node.parent.balance_factor != 0: 
                 self._recalculate_balance(node.parent)
-
-    def _right_rotation(self, node):
-        if node:
-            if node.left_child:
-                temp_node = node
-                temp_grand_child = node.left_child.right_child
-
-                node = node.left_child
-                node.parent = temp_node.parent
-
-                node.right_child = temp_node
-                node.right_child.parent = node
-                
-                if temp_grand_child:
-                    node.right_child.left_child = temp_grand_child
-                    node.right_child.left_child.parent = node.right_child
-                node.right_child.balance_factor = \
-                        node.right_child.balance_factor \
-                        + 1 - min(node.balance_factor, 0)
-                node.balance_factor = \
-                        node.balance_factor \
-                        + 1 - min(node.right_child.balance_factor, 0)
-                if node._is_root():
-                    self.root_node = node
-        return node
         
     def _left_rotation(self, node):
         if node:
-            if node.right_child:
-                temp_node = node
-                temp_grand_child = node.right_child.left_child
+            if node.left_child:
+                sub_tree_root = node.left_child
+                node.left_child = sub_tree_root.right_child
+                if sub_tree_root.right_child:
+                    sub_tree_root.right_child.parent = node
+                sub_tree_root.parent = node.parent
+                if node._is_root():
+                    self.root_node = sub_tree_root
+                else:
+                    if node._is_right_child():
+                        node.parent.right_child = sub_tree_root
+                    else:
+                        node.parent.left_child = sub_tree_root
 
-                node = node.right_child                
-                node.parent = temp_node.parent
+                sub_tree_root.right_child = node
+                node.parent = sub_tree_root
 
-                node.left_child = temp_node
-                node.left_child.parent = node
-
-                if temp_grand_child:
-                    node.left_child.right_child = temp_grand_child
-                    node.left_child.right_child.parent = node.left_child
-                node.left_child.balance_factor = \
-                        node.left_child.balance_factor \
-                        + 1 - min(node.balance_factor, 0)
                 node.balance_factor = \
                         node.balance_factor \
-                        + 1 - min(node.left_child.balance_factor, 0)
+                        + 1 - min(sub_tree_root.balance_factor, 0)
+                sub_tree_root.balance_factor = \
+                        sub_tree_root.balance_factor \
+                        + 1 + max(node.balance_factor, 0)
+
+    def _right_rotation(self, node):
+        if node:
+            if node.right_child:
+                sub_tree_root = node.right_child
+                node.right_child = sub_tree_root.left_child
+                if sub_tree_root.left_child:
+                    sub_tree_root.left_child.parent = node
+                sub_tree_root.parent = node.parent
                 if node._is_root():
-                    self.root_node = node
-        return node
+                    self.root_node = sub_tree_root
+                else:
+                    if node._is_left_child():
+                        node.parent.left_child = sub_tree_root
+                    else:
+                        node.parent.right_child = sub_tree_root
+
+                sub_tree_root.left_child = node
+                node.parent = sub_tree_root
+
+                node.balance_factor = \
+                        node.balance_factor \
+                        + 1 - min(sub_tree_root.balance_factor, 0)
+                sub_tree_root.balance_factor = \
+                        sub_tree_root.balance_factor \
+                        + 1 + max(node.balance_factor, 0)
 
     def _rebalance_tree(self, node):
         if node.balance_factor < 0:
@@ -375,5 +369,4 @@ class RedBlackTree(BinaryTree):
 
 class SplayTree(BinaryTree):
     pass
-
 

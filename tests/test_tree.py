@@ -13,7 +13,7 @@ from algorithm.tree import (in_order_traversal,
                               pre_order_traversal,
                               post_order_traversal,
                               right_rotation,
-                              left_rotation,pre_order_traversal_debug)
+                              left_rotation)
 
 def get_mock_binary_tree():
     n1 = BinaryTreeNode(1, None, None)
@@ -163,8 +163,7 @@ class TestBinaryHeap(unittest.TestCase):
 class TestAVLTree(unittest.TestCase):
 
     def test_create_avl(self):
-        print('DEBUG')
         print("Testing avl tree creation")
         avl = get_mock_avl()
-        pre_order_traversal_debug(avl.root_node, debug=0)
+        pre_order_traversal(avl.root_node)
         print()
