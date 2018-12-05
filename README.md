@@ -6,9 +6,9 @@
 - [ ] DoublyLinkedList
 - [ ] Hashtable
 - [x] BinaryTree template
-- [x] CompleteBinaryTree template
-- [ ] FullBinaryTree template
-- [ ] PerfectBinaryTree template
+- [x] _complete_tree function
+- [ ] _full_binary_tree function
+- [ ] _perfect_binary_tree function
 - [x] BinarySearchTree
 - [x] MinHeap
 - [x] MaxHeap
@@ -35,6 +35,7 @@
 - [ ] Quick sort
 - [ ] Shell sort
 - [ ] Radix sort
+- [ ] Heap sort
 - [ ] Stringbuilder
 - [ ] Hash Table Collision Resolution
 - [ ] Rabin-Karp Substring Search
