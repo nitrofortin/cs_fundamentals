@@ -309,11 +309,12 @@ class AVLTree(BinaryTree):
             if node.left_child:
                 temp_node = node
                 temp_grand_child = node.left_child.right_child
+
                 node = node.left_child
+                node.parent = temp_node.parent
 
                 node.right_child = temp_node
                 node.right_child.parent = node
-                node.parent = temp_node.parent
                 
                 if temp_grand_child:
                     node.right_child.left_child = temp_grand_child
@@ -324,6 +325,8 @@ class AVLTree(BinaryTree):
                 node.balance_factor = \
                         node.balance_factor \
                         + 1 - min(node.right_child.balance_factor, 0)
+                if node._is_root():
+                    self.root_node = node
         return node
         
     def _left_rotation(self, node):
@@ -332,10 +335,12 @@ class AVLTree(BinaryTree):
                 temp_node = node
                 temp_grand_child = node.right_child.left_child
 
-                node = node.right_child
+                node = node.right_child                
+                node.parent = temp_node.parent
+
                 node.left_child = temp_node
                 node.left_child.parent = node
-                node.parent = temp_node.parent
+
                 if temp_grand_child:
                     node.left_child.right_child = temp_grand_child
                     node.left_child.right_child.parent = node.left_child
@@ -345,6 +350,8 @@ class AVLTree(BinaryTree):
                 node.balance_factor = \
                         node.balance_factor \
                         + 1 - min(node.left_child.balance_factor, 0)
+                if node._is_root():
+                    self.root_node = node
         return node
 
     def _rebalance_tree(self, node):
