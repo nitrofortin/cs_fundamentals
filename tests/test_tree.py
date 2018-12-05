@@ -5,8 +5,10 @@ from data_structure.tree import (BinaryTreeNode,
                                  BinarySearchTree,
                                  MinHeap,
                                  MaxHeap,
+                                 AVLTree,
                                  _node_count,
-                                 _is_complete)
+                                 _is_complete,
+                                 _tree_height)
 from algorithm.tree import (in_order_traversal, 
                               pre_order_traversal,
                               post_order_traversal,
@@ -43,6 +45,16 @@ def get_mock_heap(heap_type):
     mh.insert(10)
     return mh
 
+def get_mock_avl():
+    avl = AVLTree()
+    avl.insert(2)
+    avl.insert(5)
+    avl.insert(10)
+    avl.insert(10)
+    avl.insert(30)
+    return avl
+
+
 
 class TestBinaryTree(unittest.TestCase):
     def test_node_count(self):
@@ -67,6 +79,12 @@ class TestBinaryTree(unittest.TestCase):
         bst.insert(3)
         bst.insert(10)
         in_order_traversal(bst.root_node)
+        print()
+
+    def test_tree_height(self):
+        print("Testing tree_height...")
+        tree = get_mock_binary_tree()
+        print(_tree_height(tree.root_node))  
         print()
 
 
@@ -139,4 +157,23 @@ class TestBinaryHeap(unittest.TestCase):
         print(mh._array_repr[1:])
         print(mh.delete_max())
         print(mh._array_repr[1:])
+        print()
+
+
+class TestAVLTree(unittest.TestCase):
+    def pre_order_traversal(node):
+        if node:
+            print(node)
+            print('Visiting node with value {}'.format(node.value))
+            print('Visiting node with parent {}'.format(node.parent.value))
+            print('Visiting node with left {}'.format(node.left.value))
+            print('Visiting node with right {}'.format(node.right.value))
+            print()
+            pre_order_traversal(node.left_child)
+            pre_order_traversal(node.right_child)
+
+    def test_create_avl(self):
+        print("Testing avl tree creation")
+        avl = get_mock_avl()
+        in_order_traversal(avl.root_node)
         print()

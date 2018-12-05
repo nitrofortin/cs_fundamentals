@@ -42,3 +42,4 @@ def left_rotation(node):
             if temp_grand_child:
                 node.left_child.right_child = temp_grand_child
     return node
+
