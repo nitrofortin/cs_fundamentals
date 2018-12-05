@@ -12,13 +12,13 @@
 - [x] BinarySearchTree
 - [x] MinHeap
 - [x] MaxHeap
-- [ ] AVLTree
+- [x] AVLTree
 - [ ] RedBlackTree
 - [ ] SplayTree
 - [x] Stack
 - [x] Queue
 - [x] Dequeue
-- [ ] Graph
+- [x] Graph
 - [ ] Graph as adjacency matrix
 - [ ] Graph as adjacency list
 
