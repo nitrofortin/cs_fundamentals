@@ -47,7 +47,13 @@ def get_mock_heap(heap_type):
 
 def get_mock_avl():
     avl = AVLTree()
+    avl.insert(16)
     avl.insert(2)
+    avl.insert(40)
+    avl.insert(7)
+    avl.insert(18)
+    avl.insert(9)
+    avl.insert(1)
     avl.insert(5)
     avl.insert(10)
     avl.insert(10)
