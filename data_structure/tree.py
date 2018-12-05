@@ -296,7 +296,7 @@ class AVLTree(BinaryTree):
             if node.parent.balance_factor != 0: 
                 self._recalculate_balance(node.parent)
         
-    def _left_rotation(self, node):
+    def _right_rotation(self, node):
         if node:
             if node.left_child:
                 sub_tree_root = node.left_child
@@ -322,7 +322,7 @@ class AVLTree(BinaryTree):
                         sub_tree_root.balance_factor \
                         + 1 + max(node.balance_factor, 0)
 
-    def _right_rotation(self, node):
+    def _left_rotation(self, node):
         if node:
             if node.right_child:
                 sub_tree_root = node.right_child
@@ -351,16 +351,48 @@ class AVLTree(BinaryTree):
     def _rebalance_tree(self, node):
         if node.balance_factor < 0:
             if node.right_child.balance_factor > 0:
-                self._right_rotation(node.right_child)
-                self._left_rotation(node)
-            else:
+                self._left_rotation(node.right_child)
                 self._right_rotation(node)
+            else:
+                self._left_rotation(node)
         elif node.balance_factor > 0:
             if node.left_child.balance_factor < 0:
-                self._left_rotation(node.left_child)
-                self._right_rotation(node)
-            else:
+                self._right_rotation(node.left_child)
                 self._left_rotation(node)
+            else:
+                self._right_rotation(node)
+
+
+
+
+class RedBlackTreeNode(BinaryTreeNode):
+    def __init__(self, 
+                 value, 
+                 color=None,
+                 left_child=None, 
+                 right_child=None,
+                 parent=None):
+        super().__init__(value, left_child=left_child, right_child=right_child)
+        self.parent = parent
+        self.color = color
+        self.payload = None
+        if left_child or right_child:
+            self.balance_factor = _balance_factor(left_child, right_child)
+        else:
+            self.balance_factor = 0
+
+    def _is_right_child(self):
+        if self.parent:
+            return self.parent.right_child == self
+        return False
+
+    def _is_left_child(self):
+        if self.parent:
+            return self.parent.left_child == self
+        return False
+
+    def _is_root(self):
+        return not self.parent
 
 
 class RedBlackTree(BinaryTree):
