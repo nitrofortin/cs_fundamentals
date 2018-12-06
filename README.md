@@ -2,16 +2,16 @@
 
 
 * DATA STRUCTURES
-- [x] SinglyLinkedList
-- [ ] DoublyLinkedList
+- [x] Singly Linked List
+- [ ] Doubly Linked List
 - [x] Hashtable
-- [x] BinaryTree template
-- [x] BinarySearchTree
-- [x] MinHeap
-- [x] MaxHeap
-- [x] AVLTree
-- [ ] RedBlackTree
-- [ ] SplayTree
+- [x] Binary Tree template
+- [x] Binary Search Tree
+- [x] Min Heap
+- [x] Max Heap
+- [x] AVL Tree
+- [ ] Red Black Tree
+- [ ] Splay Tree
 - [x] Stack
 - [x] Queue
 - [x] Dequeue
@@ -35,8 +35,8 @@
 - [ ] Rabin-Karp Substring Search
 - [x] Sequential Search
 - [x] Binary Search
-- [ ] Plus Search
-- [ ] Dijkstra's Algorithm
+- [ ] A Star Search
+- [x] Dijkstra's Algorithm
 - [ ] Prim's Algorithm
 - [ ] Depth-First Search
 - [x] Breath-First Search

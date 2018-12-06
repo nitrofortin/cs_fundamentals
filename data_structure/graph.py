@@ -16,6 +16,9 @@ class GraphNode(object):
     def get_neighbors(self):
         return list(self.neighbors.keys())
 
+    def get_neighbor_weight(self, node):
+        return self.neighbors[node]
+
     def set_metadata(self, key, value):
         self.metadata[key] = value
 

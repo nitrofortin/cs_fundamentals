@@ -126,9 +126,14 @@ class _BinaryHeap(CompleteBinaryTree):
         self._array_repr = [0]
         self._array_repr_size = 0
 
-    def insert(self, value):
+    def insert(self, value, payload=None):
         # Ensure shape property
-        self._array_repr.append(value)
+        element = {
+            'value': value,
+            'payload': payload
+        }
+
+        self._array_repr.append(element)
         self._array_repr_size += 1
         # Ensure heap property
         self._percolate_up_last_node()
@@ -170,7 +175,7 @@ class MinHeap(_BinaryHeap):
         if 2*idx+1 > self._array_repr_size:
             return 2*idx
         else:
-            if self._array_repr[2*idx] > self._array_repr[2*idx+1]:
+            if self._array_repr[2*idx]['value'] > self._array_repr[2*idx+1]['value']:
                 return 2*idx + 1
             else:
                 return 2*idx
@@ -179,7 +184,7 @@ class MinHeap(_BinaryHeap):
         idx = self._array_repr_size
         while idx > 1:
             parent_idx = idx//2
-            if self._array_repr[parent_idx] > self._array_repr[idx]:
+            if self._array_repr[parent_idx]['value'] > self._array_repr[idx]['value']:
                 self._array_repr = _swap_array_elements(self._array_repr, 
                                                         parent_idx, 
                                                         idx)
@@ -188,7 +193,8 @@ class MinHeap(_BinaryHeap):
     def _percolate_down_node(self, idx):
         while 2*idx < self._array_repr_size:
             min_child_idx = self._get_min_child(idx)
-            if self._array_repr[min_child_idx] < self._array_repr[idx]:
+            if (self._array_repr[min_child_idx]['value'] \
+                < self._array_repr[idx]['value']):
                 self._array_repr = _swap_array_elements(self._array_repr, 
                                                         min_child_idx, 
                                                         idx)
@@ -205,7 +211,7 @@ class MaxHeap(_BinaryHeap):
         if 2*idx+1 > self._array_repr_size:
             return 2*idx
         else:
-            if self._array_repr[2*idx] < self._array_repr[2*idx+1]:
+            if self._array_repr[2*idx]['value'] < self._array_repr[2*idx+1]['value']:
                 return 2*idx + 1
             else:
                 return 2*idx
@@ -214,7 +220,7 @@ class MaxHeap(_BinaryHeap):
         idx = self._array_repr_size
         while idx > 1:
             parent_idx = idx//2
-            if self._array_repr[parent_idx] < self._array_repr[idx]:
+            if self._array_repr[parent_idx]['value'] < self._array_repr[idx]['value']:
                 self._array_repr = _swap_array_elements(self._array_repr, 
                                                         parent_idx, 
                                                         idx)
@@ -223,8 +229,7 @@ class MaxHeap(_BinaryHeap):
     def _percolate_down_node(self, idx):
         while 2*idx < self._array_repr_size:
             max_child_idx = self._get_max_child(idx)
-            print(self._array_repr)
-            if self._array_repr[max_child_idx] > self._array_repr[idx]:
+            if self._array_repr[max_child_idx]['value'] > self._array_repr[idx]['value']:
                 self._array_repr = _swap_array_elements(self._array_repr, 
                                                         max_child_idx, 
                                                         idx)
@@ -234,7 +239,22 @@ class MaxHeap(_BinaryHeap):
     delete_max = _BinaryHeap._delete_extremum
 
 
+# Derived data structure
+class PriorityQueue(object):
+    def __init__(self):
+        self._priority_queue = MinHeap()
 
+    def size(self):
+        return self._priority_queue.get_size()
+
+    def enqueue(self, priority, payload):
+        self._priority_queue.insert(priority, payload)
+
+    def dequeue(self):
+        return self._priority_queue.delete_min()
+
+
+# Self balanced trees
 class AVLTreeNode(BinaryTreeNode):
     def __init__(self, 
                  value, 
@@ -262,7 +282,6 @@ class AVLTreeNode(BinaryTreeNode):
     def _is_root(self):
         return not self.parent
 
-# Self-balanced trees
 class AVLTree(BinaryTree):
     def __init__(self, root_node=None):
         if not isinstance(root_node, AVLTreeNode) and root_node:
