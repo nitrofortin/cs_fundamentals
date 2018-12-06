@@ -61,3 +61,28 @@ def dijkstra_search(graph, priority_queue, start_id, goal_id):
                 priority_queue.enqueue(priority, neighbor)
 
     return _get_path(current_node, start, 'cost')
+
+
+def a_star_search(graph, priority_queue, start_id, goal_id, heuristic):
+    start = graph.get_node(start_id)
+    goal = graph.get_node(goal_id)
+    start.set_metadata('cost', 0)
+    priority_queue.enqueue(0, start)
+    start.set_metadata('come_from', None)
+
+    while priority_queue.size():
+        current_node = priority_queue.dequeue()['payload']
+        if current_node == goal:
+            break
+        for neighbor in current_node.get_neighbors():
+            neighbor_cost = current_node.get_metadata('cost') + \
+                neighbor.get_neighbor_weight(current_node)
+            if (not neighbor.get_metadata('visited') or neighbor_cost < 
+                neighbor.get_metadata('cost')):
+                neighbor.set_metadata('cost', neighbor_cost)
+                neighbor.set_metadata('come_from', current_node)
+                neighbor.set_metadata('visited', True)
+                priority = neighbor_cost + heuristic(current_node, neighbor)
+                priority_queue.enqueue(priority, neighbor)
+
+    return _get_path(current_node, start, 'cost')

@@ -4,7 +4,7 @@ from data_structure.graph import Graph
 from data_structure.basic import Queue
 from data_structure.tree import PriorityQueue
 
-from algorithm.graph import breath_first_search, dijkstra_search
+from algorithm.graph import breath_first_search, dijkstra_search, a_star_search
 
 def get_mock_graph():
     g = Graph()
@@ -24,6 +24,9 @@ def get_queue():
 def get_priority_queue():
     return PriorityQueue()
 
+def dummy_id_heuristic(node_1, node_2):
+    return abs(node_1.id-node_2.id)
+
 class TestGraph(unittest.TestCase):
     def test_graph_creation(self):
         get_mock_graph()
@@ -41,3 +44,10 @@ class TestGraph(unittest.TestCase):
         node_start_id = 25
         node_goal_id = 75
         dijkstra_search(g, q, node_start_id, node_goal_id)
+
+    def test_graph_a_star(self):
+        g = get_mock_graph()
+        q = get_priority_queue()
+        node_start_id = 25
+        node_goal_id = 75
+        a_star_search(g, q, node_start_id, node_goal_id, dummy_id_heuristic)
