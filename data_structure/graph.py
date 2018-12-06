@@ -5,6 +5,7 @@ class GraphNode(object):
     def __init__(self, id=None):
         self.id = id
         self.neighbors = {}
+        self.metadata = {}
 
     def add_neighbor(self, node, weight=1):
         self.neighbors[node] = weight
@@ -14,6 +15,14 @@ class GraphNode(object):
 
     def get_neighbors(self):
         return list(self.neighbors.keys())
+
+    def set_metadata(self, key, value):
+        self.metadata[key] = value
+
+    def get_metadata(self, key):
+        if key in self.metadata:
+            return self.metadata[key]
+        return None
 
     def __contains__(self, node_id):
         return (node_id in self.neighbors.keys())
@@ -55,7 +64,7 @@ class Graph(object):
         node_source.add_neighbor(node_target, weight)
 
     def get_node(self, node_id):
-        for n in self.nodes:
+        for n in self:
             if n.id == node_id:
                 return n
         return NullNode()
@@ -91,9 +100,9 @@ class GraphAdjacencyTable(object):
         if target_id not in self._nodes_table[source_id].keys():
             self._nodes_table[source_id] = {target_id: weight}
 
-    def add_edge(self, source_id, target_id, weight=1):
-        self.add_edge_directed(source_id, target_id)
-        self.add_edge_directed(target_id, source_id)
+    def add_edge(self, node_1, node_2, weight=1):
+        self.add_edge_directed(node_1, node_2)
+        self.add_edge_directed(node_2, node_1)
 
     def delete_node(self, node_id):
         if not node_id in self._nodes_table:
@@ -102,3 +111,27 @@ class GraphAdjacencyTable(object):
             if node_id in n.keys():
                 del n[node_id]
         del self._nodes_table[node_id]
+        
+
+class GraphAdjacencyMatrix(object):
+    def __init__(self, size):
+        self._adj_matrix = [[0 for i in range(size)] for i in range(size)]
+        self._number_of_nodes = size
+
+    def add_node(self):
+        for idx, node_links in enumerate(self._adj_matrix):
+            node_links.append(0)
+            self._adj_matrix[i] = node_links
+        self._number_of_nodes += 1
+        new_node_links = [0 for i in range(self._number_of_nodes)]
+        self._adj_matrix.append(new_node_links)
+
+    def add_edge_directed(self, source_id, target_id, weight=1):
+        if (source_id+1 > self._number_of_nodes) or \
+            (target_id+1 > self._number_of_nodes):
+            raise GraphException('Nodes source_id or target_id out of bound')
+        self._adj_matrix[source_id][target_id] = weight
+
+    def add_edge(self, node_1, node_2, weight=1):
+        self.add_edge_directed(node_1, node_2, weight=1)
+        self.add_edge_directed(node_2, node_1, weight=1)

@@ -4,11 +4,8 @@
 * DATA STRUCTURES
 - [x] SinglyLinkedList
 - [ ] DoublyLinkedList
-- [ ] Hashtable
+- [x] Hashtable
 - [x] BinaryTree template
-- [x] _complete_tree function
-- [ ] _full_binary_tree function
-- [ ] _perfect_binary_tree function
 - [x] BinarySearchTree
 - [x] MinHeap
 - [x] MaxHeap
@@ -19,15 +16,12 @@
 - [x] Queue
 - [x] Dequeue
 - [x] Graph
-- [ ] Graph as adjacency matrix
-- [ ] Graph as adjacency list
+- [x] Graph as adjacency table
+- [x] Graph as adjacency matrix
+
 
 
 * ALGORITHMS
-- [x] In-Order Traversal
-- [x] Pre-Order Traversal
-- [x] Post-Order Traversal
-- [x] Tree rotations
 - [ ] Bubble sort
 - [ ] Selection sort
 - [x] Insertion sort
@@ -45,7 +39,7 @@
 - [ ] Dijkstra's Algorithm
 - [ ] Prim's Algorithm
 - [ ] Depth-First Search
-- [ ] Breath-First Search
+- [x] Breath-First Search
 - [ ] Topological Sort
 
 * BINARY MANIPULATION 
