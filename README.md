@@ -30,12 +30,12 @@
 - [x] Tree rotations
 - [ ] Bubble sort
 - [ ] Selection sort
-- [ ] Insertion sort
+- [x] Insertion sort
 - [ ] Merge sort 
 - [ ] Quick sort
 - [ ] Shell sort
 - [ ] Radix sort
-- [ ] Heap sort
+- [x] Heap sort
 - [ ] Stringbuilder
 - [ ] Hash Table Collision Resolution
 - [ ] Rabin-Karp Substring Search

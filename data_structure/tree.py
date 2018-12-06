@@ -133,15 +133,23 @@ class _BinaryHeap(CompleteBinaryTree):
         # Ensure heap property
         self._percolate_up_last_node()
 
+    def get_size(self):
+        return self._array_repr_size
+
     def _get_extremum(self):
         return self._array_repr[1]
 
     def _delete_extremum(self):
-        old = self._array_repr[1]
-        self._array_repr[1] = self._array_repr.pop()
-        self._array_repr_size -= 1
-        self._percolate_down_node(idx=1)       
-        return old
+        if self._array_repr_size > 0:
+            old = self._array_repr[1]
+            new = self._array_repr.pop()
+            if self._array_repr_size > 1:
+                self._array_repr[1] = new
+                self._array_repr_size -= 1
+                self._percolate_down_node(idx=1)  
+            else:
+                self._array_repr_size -= 1
+            return old
 
     def _percolate_up_last_node(self):
         raise TreeException('Heap property not defined, use either `MinHeap` \
@@ -178,7 +186,7 @@ class MinHeap(_BinaryHeap):
             idx //= 2
 
     def _percolate_down_node(self, idx):
-        while idx < self._array_repr_size:
+        while 2*idx < self._array_repr_size:
             min_child_idx = self._get_min_child(idx)
             if self._array_repr[min_child_idx] < self._array_repr[idx]:
                 self._array_repr = _swap_array_elements(self._array_repr, 
@@ -213,8 +221,9 @@ class MaxHeap(_BinaryHeap):
             idx //= 2
 
     def _percolate_down_node(self, idx):
-        while idx < self._array_repr_size:
+        while 2*idx < self._array_repr_size:
             max_child_idx = self._get_max_child(idx)
+            print(self._array_repr)
             if self._array_repr[max_child_idx] > self._array_repr[idx]:
                 self._array_repr = _swap_array_elements(self._array_repr, 
                                                         max_child_idx, 
