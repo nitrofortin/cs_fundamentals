@@ -43,22 +43,25 @@ class Stack(object):
 class Queue(object):
     def __init__(self):
         self._queue = []
+        self._queue_size = 0
 
     def enqueue(self, value):
+        self._queue_size += 1
         self._queue.append(value)
 
     def dequeue(self):
-        if len(self._stack)>0:
-            return self._stack.pop(0)
+        if len(self._queue)>0:
+            self._queue_size -= 1
+            return self._queue.pop(0)
         return None
 
     def peek(self):
-        if len(self._stack)>0:
-            return self._stack[0]
+        if len(self._queue)>0:
+            return self._queue[0]
         return None
 
     def size(self):
-        return len(self._queue)
+        return self._queue_size
 
     def empty(self):
         return bool(self._queue)
@@ -71,7 +74,7 @@ class Dequeue(object):
         self._dequeue.append(value)
 
     def enqueue_top(self, value):
-        self._dequeue = [value] + self._dequeue.
+        self._dequeue = [value] + self._dequeue
 
     def dequeue_top(self):
         if len(self._dequeue)>0:
