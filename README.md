@@ -3,7 +3,7 @@
 
 * DATA STRUCTURES
 - [x] Singly Linked List
-- [ ] Doubly Linked List
+- [x] Doubly Linked List
 - [x] Hashtable
 - [x] Binary Tree template
 - [x] Binary Search Tree
@@ -35,7 +35,7 @@
 - [ ] Rabin-Karp Substring Search
 - [x] Sequential Search
 - [x] Binary Search
-- [ ] A Star Search
+- [x] A Star Search
 - [x] Dijkstra's Algorithm
 - [ ] Prim's Algorithm
 - [ ] Depth-First Search

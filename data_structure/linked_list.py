@@ -1,17 +1,19 @@
-class Node:
-    def __init__(self, value, next_node):
+class LinkedListException(Exception):
+    pass
+
+class Node(object):
+    def __init__(self, value, next_node, previous_node=None):
         self.value = value
         self.next_node = next_node 
+        self.previous_node = previous_node
 
-class SinglyLinkedList:
+class _LinkedList(object):
     def __init__(self):
         self.last_node = None
         self.linked_list_size = 0
 
     def append(self, value):
-        new_node = Node(value, self.last_node)
-        self.last_node = new_node
-        self.linked_list_size += 1
+        raise LinkedListException('Not implemented error')
 
     def _delete(self, value):
         node = self.last_node
@@ -57,4 +59,21 @@ class SinglyLinkedList:
                 return True
             node = node.next_node
         return False
+
+
+class SinglyLinkedList(_LinkedList):
+
+    def append(self, value):
+        new_node = Node(value, self.last_node)
+        self.last_node = new_node
+        self.linked_list_size += 1
+
+
+class DoublyLinkedList(_LinkedList):
+
+    def append(self, value):
+        new_node = Node(value, self.last_node)
+        self.last_node.previous_node = new_node
+        self.last_node = new_node
+        self.linked_list_size += 1
 
