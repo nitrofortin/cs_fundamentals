@@ -39,16 +39,6 @@ class LinearModel(object):
         pass
 
 
-class Loader(object):
-    # load executable in memory
-    def load(self):
-        pass
-    def _check_os(self):
-        pass
-
-    def _check_cpu(self):
-        pass
-
 class Segment(object):
     pass
 
@@ -110,6 +100,12 @@ class VirtualMemory(object):
     _static = Static()
     _stack = Stack()
     _heap = Heap()
+    _addresses = {
+        _code: None
+        _static: None
+        _stack: None
+        _heap: None
+    }
 
 class Process(object):
     _memory_manager = MemoryManager
@@ -136,14 +132,34 @@ class MemoryTable(object):
         return self._table[virtual]
 
 
-class OperatingSystem(object):
-    _loader = Loader
+class Loader(object):
+    # load executable in memory
+    def create_process(self, exe):
+        return Process(exe)
+
+    def get_page_table(self, exe):
+        table = MemoryTable()
+        virtual, physical = self.get_addresses(exe)
+        for v, p in zip(virtual, physical):
+            table.add_entry(v, p)
+        return table
+
+    def load(self):
+        pass
+    def _check_os(self):
+        pass
+
+    def _check_cpu(self):
+        pass
+
+
+class Kernel(object):
+    _loader = Loader()
     _processes = []
-    _physical_memory_map = {}
     _page_tables = {}
 
-    def spawn_process(self, pid, exe, virtual_address, physical_address)
-        p = Process(pid, exe)
+    def spawn_process(self, exe)
+        p = self._loader.create_process(exe)
         page_table = self.get_page_table(exe)
         self._page_tables[p] = page_table
 
