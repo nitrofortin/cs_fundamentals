@@ -114,13 +114,45 @@ class VirtualMemory(object):
 class Process(object):
     _memory_manager = MemoryManager
     _virtual_memory = VirtualMemory
-    def __init__(self, pid, exe, memory):
+    def __init__(self, pid, exe):
         self.pid = pid
         self.exe = exe
-        self.memory = memory
+
+class MemoryPage(object):
+    _size = 4096
+    def __init__(self, address):
+        self._address = address
+
+class MemoryTable(object):
+    _entry_size = 4
+    _table = {}
+
+    def add_entry(self, virtual, physical):
+        v = MemoryPage(virtual)
+        p = MemoryPage(physical)
+        self._table[v] = p
+
+    def get_physical_address(self, virtual):
+        return self._table[virtual]
+
 
 class OperatingSystem(object):
-    loader = Loader
+    _loader = Loader
     _processes = []
-    def spawn_process(self, pid, exe, memory)
-        p = Process(pid, exe, memory)
+    _physical_memory_map = {}
+    _page_tables = {}
+
+    def spawn_process(self, pid, exe, virtual_address, physical_address)
+        p = Process(pid, exe)
+        page_table = self.get_page_table(exe)
+        self._page_tables[p] = page_table
+
+    def get_page_table(self, exe):
+        table = MemoryTable()
+        virtual, physical = self.get_addresses(exe)
+        for v, p in zip(virtual, physical):
+            table.add_entry(v, p)
+        return table
+
+    def get_addresses(self, exe):
+        pass
