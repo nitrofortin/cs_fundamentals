@@ -3,7 +3,7 @@
 
 * DATA STRUCTURES
 - [x] Singly Linked List
-- [ ] Doubly Linked List
+- [x] Doubly Linked List
 - [x] Hashtable
 - [x] Binary Tree template
 - [x] Binary Search Tree
