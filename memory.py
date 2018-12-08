@@ -95,6 +95,13 @@ class MemoryManager(object):
     def _merge_neighbor_chunks(self):
         pass
 
+class Executable(object):
+    _code_size = None
+    _static_size = None
+    _stack_size = None
+    _heap_size = None
+
+
 class VirtualMemory(object):
     _code = Code()
     _static = Static()
@@ -107,11 +114,13 @@ class VirtualMemory(object):
         _heap: None
     }
 
+class PhysicalMemory(object):
+    pass
+
 class Process(object):
     _memory_manager = MemoryManager
     _virtual_memory = VirtualMemory
-    def __init__(self, pid, exe):
-        self.pid = pid
+    def __init__(self, exe):
         self.exe = exe
 
 class MemoryPage(object):
@@ -131,6 +140,9 @@ class MemoryTable(object):
     def get_physical_address(self, virtual):
         return self._table[virtual]
 
+class DMAController(object):
+    #extract code from disk and loads it in memory
+    pass
 
 class Loader(object):
     # load executable in memory
@@ -144,31 +156,47 @@ class Loader(object):
             table.add_entry(v, p)
         return table
 
-    def load(self):
+    def get_addresses(self, exe):
+        total_size = exe._code_size
+        total_size += exe._static_size
+        total_size += exe._stack_size
+        total_size += exe._heap_size
+        page_size = MemoryPage._size
+        pages_amount = total_size/page_size + (total_size%page_size!=0)
+
+        physical = self._get_physical_addresses(pages_amount)
+        virtual = self._get_virtual_addresses(pages_amount)
+        return virtual, physical
+
+    def _get_physical_addresses(self, amount):
         pass
+
+    def _get_virtual_addresses(self, amount):
+        pass
+
     def _check_os(self):
         pass
 
     def _check_cpu(self):
         pass
 
+page_tables = {}
 
 class Kernel(object):
     _loader = Loader()
     _processes = []
-    _page_tables = {}
+    _page_tables = page_tables
+    _physical_memory = PhysicalMemory
 
     def spawn_process(self, exe)
         p = self._loader.create_process(exe)
-        page_table = self.get_page_table(exe)
+        page_table = self._loader.get_page_table(exe)
         self._page_tables[p] = page_table
 
-    def get_page_table(self, exe):
-        table = MemoryTable()
-        virtual, physical = self.get_addresses(exe)
-        for v, p in zip(virtual, physical):
-            table.add_entry(v, p)
-        return table
 
-    def get_addresses(self, exe):
-        pass
+
+class MemoryManagementUnit(object):
+    _page_tables = page_tables
+
+class CPU(object):
+    _mmu = MemoryManagementUnit
