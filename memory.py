@@ -180,23 +180,29 @@ class Loader(object):
     def _check_cpu(self):
         pass
 
-page_tables = {}
+class PageTables(object):
+    # interface
+    _map = {}
+    def add_entry(self, process, page_table):
+        self._map[process] = page_table
 
+    def get_entry(self, process):
+        return self._map[process]
+ 
 class Kernel(object):
     _loader = Loader()
     _processes = []
-    _page_tables = page_tables
+    _page_tables = PageTables
     _physical_memory = PhysicalMemory
 
     def spawn_process(self, exe)
         p = self._loader.create_process(exe)
         page_table = self._loader.get_page_table(exe)
-        self._page_tables[p] = page_table
-
+        self._page_tables.add_entry(p, page_table)
 
 
 class MemoryManagementUnit(object):
-    _page_tables = page_tables
+    _page_tables = PageTables
 
 class CPU(object):
     _mmu = MemoryManagementUnit
