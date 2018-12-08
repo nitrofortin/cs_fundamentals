@@ -44,19 +44,22 @@ class Segment(object):
 
 class Stack(Segment):
     # For fixed size local variables, freed after function call
-    pass
+    _mode = "rw"
+    
 
 class Heap(Segment):
     # Dynamically allocated variables (malloc, free)
-    pass
+    _mode = "rw"
+    
 
 class Static(Segment):
     # global variables, never freed while program runs
-    pass
+    _mode = "r"
+    
 
 class Code(Segment):
     # store instructions
-    pass
+    _mode = "r"
 
 class CallStack(Stack):
     def __init__(self):
@@ -120,10 +123,19 @@ class PhysicalMemory(object):
 class Process(object):
     _memory_manager = MemoryManager
     _virtual_memory = VirtualMemory
+    _buffer = {}
     def __init__(self, exe):
         self.exe = exe
 
-class MemoryPage(object):
+    def load_data(self, data, address):
+        self._buffer[address] = data
+
+
+
+class Page(object):
+    _size = 4096
+
+class MemoryPage(Page):
     _size = 4096
     def __init__(self, address):
         self._address = address
@@ -180,6 +192,7 @@ class Loader(object):
     def _check_cpu(self):
         pass
 
+
 class PageTables(object):
     # interface
     _map = {}
@@ -188,21 +201,58 @@ class PageTables(object):
 
     def get_entry(self, process):
         return self._map[process]
- 
+
+class PageCache(Page):
+    # used to cache files on MemoryPage         
+    _pages = None
+    _memory_log = None
+    def file_exists(self, file_path):
+        if file_path in self._pages:
+            return True
+        return False
+
+    def get_file_bytes(self, file_path, file_bytes):
+        pass
+
+    def set_file(sefl, file_path, file):
+        _address = self.get_address()
+        _memory_log[]
+
+
+    def get_address(self):
+        pass
+
 class Kernel(object):
     _loader = Loader()
     _processes = []
     _page_tables = PageTables
     _physical_memory = PhysicalMemory
+    _page_cache = PageCache
 
     def spawn_process(self, exe)
         p = self._loader.create_process(exe)
         page_table = self._loader.get_page_table(exe)
         self._page_tables.add_entry(p, page_table)
 
+    def get_file(self, file_path):
+        if self._page_cache.file_exists(file_path):
+            file = self._page_cache.get_file(file_path)
+        else:
+            file = self.load_from_disk(file_path)
+            self._page_cache.set_file(file_path, file)
+        return file
+
+    def load_data_to_process_buffer(self, file_path, process, file_bytes):
+        chunk, address = self._page_cache.get_file_bytes(file_path, file_bytes)
+        self._processes[process].load_data(chunk, address)
+
+    def set_mmap(self, process, virtual, physical):
+        # eliminates ram to ram, process buffer usage
+        pass
 
 class MemoryManagementUnit(object):
     _page_tables = PageTables
 
 class CPU(object):
     _mmu = MemoryManagementUnit
+
