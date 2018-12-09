@@ -18,14 +18,14 @@
 - [x] Graph
 - [x] Graph as adjacency table
 - [x] Graph as adjacency matrix
-
+- [ ] Trie
 
 
 * ALGORITHMS
 - [ ] Bubble sort
 - [ ] Selection sort
 - [x] Insertion sort
-- [ ] Merge sort 
+- [x] Merge sort 
 - [ ] Quick sort
 - [ ] Shell sort
 - [ ] Radix sort
