@@ -1,4 +1,4 @@
-# Computer Science Fundamentals
+# Basic Data Structures and Algorithms in Python
 
 
 * DATA STRUCTURES
